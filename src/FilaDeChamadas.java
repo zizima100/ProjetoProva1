@@ -26,6 +26,18 @@ public class FilaDeChamadas {
         return telefone;
     }
 
+    public boolean validacaoTelefone(String telefone) throws Exception {    
+        char carac;
+        for (int i = 0; i < telefone.length(); i++) {
+            carac = telefone.charAt(i);
+            if (!Character.isDigit(carac)) {
+                throw new Exception("Há letras ou caracteres especiais inseridos. . .");
+            }
+        }
+
+        return true;
+    }
+
     public boolean isVazia() {
         if (prim == null)
             return true;
@@ -184,6 +196,10 @@ public class FilaDeChamadas {
         if (isVazia())
             return "{}";
         return "{" + this.prim.getInfo() + "}";
+    }
+
+    public getPosicao(String telefone) {
+        for ()
     }
 
     private class Nodo {
