@@ -1,5 +1,6 @@
 public class FilaDeChamadas {
     Nodo prim = null;
+    int tamanho = 0;
 
     public void inserir(String telefone) throws Exception {
         Nodo novo = new Nodo();
@@ -18,24 +19,42 @@ public class FilaDeChamadas {
             novo.setProx(ant.getProx());
             ant.setProx(novo);
         }
+        tamanho++;
     }
 
     public String remover() {
         String telefone = prim.getInfo();
         prim = prim.getProx();
+        tamanho--;
         return telefone;
     }
 
-    public boolean validacaoTelefone(String telefone) throws Exception {    
+    public boolean validacaoTelefone(String telefone) {
         char carac;
         for (int i = 0; i < telefone.length(); i++) {
             carac = telefone.charAt(i);
             if (!Character.isDigit(carac)) {
-                throw new Exception("Há letras ou caracteres especiais inseridos. . .");
+                return false;
             }
         }
-
         return true;
+    }
+
+    public String getPosicao(String telefone) {
+        int posicao = 1;
+
+        for (Nodo i = prim; i != null && !i.getInfo().equals(telefone); i = i.getProx()) {
+            posicao++;
+        }
+        return posicao + "/" + this.tamanho;
+    }
+
+    public boolean inFila(String telefone) {
+        for (Nodo i = prim; i != null; i = i.getProx()) {
+            if (i.getInfo().equals(telefone))
+                return true;
+        }
+        return false;
     }
 
     public boolean isVazia() {
@@ -196,10 +215,6 @@ public class FilaDeChamadas {
         if (isVazia())
             return "{}";
         return "{" + this.prim.getInfo() + "}";
-    }
-
-    public getPosicao(String telefone) {
-        for ()
     }
 
     private class Nodo {
