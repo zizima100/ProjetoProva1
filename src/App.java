@@ -3,13 +3,12 @@ import java.util.concurrent.TimeUnit;
 
 public class App {
     public static void main(String[] args) {
-        String nome, telefone = "";
+        String telefone = "";
 
         FilaDeChamadas fila = new FilaDeChamadas();
 
         try {
             Scanner ler = new Scanner(System.in);
-            int opcao;
             boolean loop = true;
             clear();
 
@@ -60,14 +59,22 @@ public class App {
             while (!fila.isVazia()) {
                 System.out.println("---------------------------------------------------------------------------------");
                 if (fila.inFila(telefone)) {
-                    System.out.println(
-                            "Seu número {" + telefone + "} está na posição " + fila.getPosicao(telefone) + "\n");
+                    if (fila.getPosicao(telefone).charAt(0) == '1') {
+                        System.out.println("O seu número está sendo atendido!!");
+                        TimeUnit.SECONDS.sleep(2);
+                        fila.remover();
+                        continue;
+                    } else {
+                        System.out.println(
+                                "Seu número {" + telefone + "} está na posição " + fila.getPosicao(telefone) + "\n");
+                    }
                 }
-                System.out.println("Proximo número a ser atendido: " + fila);
-                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Número sendo atendido: " + fila);
+                TimeUnit.SECONDS.sleep(2);
                 fila.remover();
             }
             System.out.println("Todos os números já foram atendidos.");
+            ler.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
