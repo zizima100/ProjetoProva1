@@ -27,7 +27,7 @@ public class App {
                     System.out.printf("Telefone: ");
                     telefone = ler.nextLine();
 
-                    while (!fila.validacaoTelefone(telefone)) {
+                    while (!fila.validarTelefone(telefone)) {
                         clear();
                         System.out.println("Por favor, digite um número válido :)\n");
                         System.out.printf("Telefone: ");

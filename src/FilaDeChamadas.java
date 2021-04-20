@@ -29,7 +29,7 @@ public class FilaDeChamadas {
         return telefone;
     }
 
-    public boolean validacaoTelefone(String telefone) {
+    public boolean validarTelefone(String telefone) {
         char carac;
         for (int i = 0; i < telefone.length(); i++) {
             carac = telefone.charAt(i);
